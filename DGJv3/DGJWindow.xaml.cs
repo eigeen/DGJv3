@@ -196,6 +196,7 @@ namespace DGJv3
             Writer.ScribanTemplate = config.ScribanTemplate;
             IsLogRedirectDanmaku = config.IsLogRedirectDanmaku;
             LogDanmakuLengthLimit = config.LogDanmakuLengthLimit;
+            DanmuHandler.CoolDown = config.CoolDown;
 
             LogRedirectToggleButton.IsEnabled = LoginCenterAPIWarpper.CheckLoginCenter();
             if (LogRedirectToggleButton.IsEnabled && IsLogRedirectDanmaku)
@@ -249,6 +250,7 @@ namespace DGJv3
             Blacklist = Blacklist.ToArray(),
             IsLogRedirectDanmaku = IsLogRedirectDanmaku,
             LogDanmakuLengthLimit = LogDanmakuLengthLimit,
+            CoolDown = DanmuHandler.CoolDown
         };
 
         /// <summary>

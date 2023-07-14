@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -19,7 +20,22 @@ namespace DGJv3
             Singers = songInfo.Singers;
             Lyric = (songInfo.Lyric == null) ? Lrc.NoLyric : Lrc.InitLrc(songInfo.Lyric);
             Note = songInfo.Note;
+        }
 
+        internal SongItem(SongInfo songInfo, string userName, DateTime addTime)
+        {
+            Status = SongStatus.WaitingDownload;
+
+            UserName = userName;
+
+            Module = songInfo.Module;
+            SongId = songInfo.Id;
+            SongName = songInfo.Name;
+            Singers = songInfo.Singers;
+            Lyric = (songInfo.Lyric == null) ? Lrc.NoLyric : Lrc.InitLrc(songInfo.Lyric);
+            Note = songInfo.Note;
+
+            AddTime = addTime;
         }
 
         /// <summary>
@@ -72,7 +88,7 @@ namespace DGJv3
         public string UserName
         { get; internal set; }
 
-        // /// <summary>
+        /// <summary>
         /// 下载地址
         /// </summary>
         // public string DownloadURL
@@ -103,6 +119,8 @@ namespace DGJv3
         { get => _status; internal set => SetField(ref _status, value); }
 
         private SongStatus _status;
+
+        public DateTime AddTime { get; set; } = DateTime.Now;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = "")

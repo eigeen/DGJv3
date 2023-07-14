@@ -1,10 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DGJv3
 {
@@ -43,14 +41,17 @@ namespace DGJv3
         [JsonProperty("lrd")]
         public bool IsLogRedirectDanmaku { get; set; } = false;
 
+        [JsonProperty("cd")]
+        public uint CoolDown { get; set; } = 0;
+
         [JsonProperty("ldll")]
         public int LogDanmakuLengthLimit { get; set; } = 20;
 
         [JsonProperty("plst")]
-        public SongInfo[] Playlist { get; set; } = new SongInfo[0];
+        public SongInfo[] Playlist { get; set; } = Array.Empty<SongInfo>();
 
         [JsonProperty("blst")]
-        public BlackListItem[] Blacklist { get; set; } = new BlackListItem[0];
+        public BlackListItem[] Blacklist { get; set; } = Array.Empty<BlackListItem>();
 
         [JsonProperty("sbtp")]
         public string ScribanTemplate { get; set; } = "播放进度 {{当前播放时间}}/{{当前总时间}}\n" +

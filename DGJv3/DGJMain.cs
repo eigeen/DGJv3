@@ -35,26 +35,26 @@ namespace DGJv3
             }
             catch (Exception) { }
             window = new DGJWindow(this);
-            versionChecker = new VersionChecker("DGJv3");
-            Task.Run(() =>
-            {
-                if (versionChecker.FetchInfo())
-                {
-                    Version current = new Version(BuildInfo.Version);
-
-                    if (versionChecker.HasNewVersion(current))
-                    {
-                        Log("插件有新版本" + Environment.NewLine +
-                            $"当前版本：{BuildInfo.Version}" + Environment.NewLine +
-                            $"最新版本：{versionChecker.Version.ToString()} 更新时间：{versionChecker.UpdateDateTime.ToShortDateString()}" + Environment.NewLine +
-                            versionChecker.UpdateDescription);
-                    }
-                }
-                else
-                {
-                    Log("版本检查出错：" + versionChecker?.LastException?.Message);
-                }
-            });
+            // versionChecker = new VersionChecker("DGJv3");
+            // Task.Run(() =>
+            // {
+            //     if (versionChecker.FetchInfo())
+            //     {
+            //         Version current = new Version(BuildInfo.Version);
+            //
+            //         if (versionChecker.HasNewVersion(current))
+            //         {
+            //             Log("插件有新版本" + Environment.NewLine +
+            //                 $"当前版本：{BuildInfo.Version}" + Environment.NewLine +
+            //                 $"最新版本：{versionChecker.Version.ToString()} 更新时间：{versionChecker.UpdateDateTime.ToShortDateString()}" + Environment.NewLine +
+            //                 versionChecker.UpdateDescription);
+            //         }
+            //     }
+            //     else
+            //     {
+            //         Log("版本检查出错：" + versionChecker?.LastException?.Message);
+            //     }
+            // });
         }
 
         public override void Admin()
@@ -74,7 +74,7 @@ namespace DGJv3
             string filepath = Path.Combine(Utilities.BinDirectoryPath, path);
 
             if (assemblyName.CultureInfo?.Equals(CultureInfo.InvariantCulture) == false)
-            { path = string.Format(@"{0}\{1}", assemblyName.CultureInfo, path); }
+            { path = $@"{assemblyName.CultureInfo}\{path}"; }
 
             using (Stream stream = executingAssembly.GetManifestResourceStream(path))
             {

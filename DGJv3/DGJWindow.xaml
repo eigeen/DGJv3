@@ -323,6 +323,10 @@
                                 <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                     Text="{Binding LogDanmakuLengthLimit,UpdateSourceTrigger=PropertyChanged,Delay=200}"
                                     materialDesign:HintAssist.Hint="弹幕长度限制" materialDesign:HintAssist.IsFloating="True"/>
+                                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         Text="{Binding DanmuHandler.CoolDown,UpdateSourceTrigger=PropertyChanged,Delay=200}"
+                                         materialDesign:HintAssist.Hint="单人点歌冷却时间（分钟）"
+                                         materialDesign:HintAssist.IsFloating="True" />
                             </StackPanel>
                         </Grid>
                     </materialDesign:PopupBox>
